@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>CakebyEwela | torty artystyczne na zamówienie, Wrocław i Bielany Wrocławskie</title>
+<meta name="description" content="Makieta strony CakebyEwela: torty artystyczne na zamówienie, torty weselne i słodkie stoły. Bielany Wrocławskie, ul. Wrocławska 53. WhatsApp 609 525 422.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Lexend:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+/* CakebyEwela: nowy szkielet - pierwszy ekran to "relacje" (stories) jak na Instagramie:
+   paski postępu, slajdy same się przewijają, tap w lewo/prawo. Obok (na komputerze) kolumna z opisem i przyciskiem.
+   Kolory: pastelowa tęcza z ich okładki (róż, mięta, liliowy, masło) na bieli, tekst ciemna jeżyna. */
+:root{
+  --berry:#3a1830;
+  --pink:#f9d3dc;
+  --mint:#cdeee0;
+  --lilac:#e3d8f6;
+  --butter:#fbeaa8;
+  --rose:#e2577d;
+  --white:#ffffff;
+  --wa:#1fa855;
+  --gut:clamp(16px,4vw,56px);
+  --hd:'Libre Caslon Display',Georgia,serif;
+  --bd:'Lexend','Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--white);scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--bd);font-weight:300;font-size:17px;line-height:1.6;color:var(--berry);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-underline-offset:4px}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--hd);font-weight:400;line-height:1.02}
+b,strong{font-weight:700}
+
+/* PIERWSZY EKRAN: relacje + kolumna */
+.top{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center;max-width:1200px;margin:0 auto;padding:22px var(--gut);min-height:100vh;min-height:100svh}
+.story{position:relative;aspect-ratio:9/16;max-height:calc(100svh - 44px);width:100%;border-radius:28px;overflow:hidden;background:var(--pink);box-shadow:0 30px 60px rgba(58,24,48,.18);user-select:none}
+.bars{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:4px;z-index:5}
+.bars i{flex:1;height:3px;border-radius:3px;background:rgba(58,24,48,.2);overflow:hidden}
+.bars i::after{content:"";display:block;height:100%;width:0;background:var(--berry)}
+.bars i.done::after{width:100%}
+.bars i.run::after{animation:fill var(--dur,5s) linear forwards}
+@keyframes fill{to{width:100%}}
+.who{position:absolute;top:24px;left:14px;right:14px;z-index:5;display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
+.who i{width:34px;height:34px;border-radius:50%;background:var(--white);display:grid;place-items:center;font:400 15px var(--hd);font-style:normal;box-shadow:0 0 0 2px var(--rose)}
+.who small{font-weight:300;opacity:.7}
+.slide{position:absolute;inset:0;padding:84px 26px 34px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transform:scale(1.03);transition:opacity .5s,transform .8s}
+.slide.on{opacity:1;transform:none}
+.slide h2{font-size:clamp(34px,4vw,48px)}
+.slide p{margin-top:10px;font-size:16px;max-width:30ch}
+.slide .tag{align-self:flex-start;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.75);font-weight:500;font-size:13px;margin-bottom:12px}
+.s1{background:linear-gradient(170deg,var(--pink),#f4b9c9)}
+.s2{background:linear-gradient(170deg,#c8243f,#7d0f26);color:#fff}
+.s2 .tag{background:rgba(255,255,255,.2)}
+.s3{background:linear-gradient(170deg,var(--mint),#a6dcc6)}
+.s4{background:linear-gradient(170deg,var(--lilac),#c9b8ee)}
+.s5{background:linear-gradient(170deg,var(--butter),#f5d872)}
+#cv{position:absolute;left:0;right:0;top:12%;height:58%;width:100%;display:block}
+.big{font:400 clamp(150px,22vw,240px)/.8 var(--hd);position:absolute;top:18%;left:22px;opacity:.95}
+.balls{position:absolute;top:20%;left:0;right:0;display:flex;justify-content:center;gap:18px}
+.balls span{width:76px;height:76px;border-radius:50%;animation:bounce 1.6s ease-in-out infinite}
+.balls span:nth-child(1){background:radial-gradient(circle at 35% 35%,#fff 0 18%,#222 19% 26%,#fff 27% 40%,#222 41% 48%,#fff 49%);animation-delay:0s}
+.balls span:nth-child(2){background:radial-gradient(circle at 40% 35%,#ffb15c,#e16a12 70%);box-shadow:inset 0 0 0 3px rgba(0,0,0,.25);animation-delay:.2s}
+.balls span:nth-child(3){border-radius:18px;background:linear-gradient(#2f8f3a,#226b2b);animation-delay:.4s}
+@keyframes bounce{50%{transform:translateY(-24px)}}
+.fridge{position:absolute;top:16%;left:26px;right:26px;height:44%;border-radius:18px;background:rgba(255,255,255,.55);display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:10px;padding:12px}
+.fridge span{border-radius:12px;background:var(--white);position:relative;overflow:hidden}
+.fridge span::after{content:"";position:absolute;left:18%;right:18%;bottom:14%;height:50%;border-radius:8px 8px 4px 4px;background:var(--pink);animation:pop 6s ease-in-out infinite}
+.fridge span:nth-child(2)::after{background:var(--mint);animation-delay:.5s}.fridge span:nth-child(3)::after{background:var(--butter);animation-delay:1s}
+.fridge span:nth-child(4)::after{background:var(--lilac);animation-delay:1.5s}.fridge span:nth-child(5)::after{background:#f4b9c9;animation-delay:2s}.fridge span:nth-child(6)::after{background:#a6dcc6;animation-delay:2.5s}
+@keyframes pop{0%,100%{transform:scaleY(.2);opacity:.3}30%,70%{transform:none;opacity:1}}
+.tap{position:absolute;top:0;bottom:0;width:35%;z-index:4;background:none;border:0;cursor:pointer}
+.tap.l{left:0}.tap.r{right:0}
+.pause{position:absolute;right:14px;bottom:14px;z-index:6;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.8);font:700 14px var(--bd);cursor:pointer}
+
+.side .lbl{font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose)}
+.side h1{font-size:clamp(52px,7vw,104px);margin-top:10px}
+.side h1 em{display:block;font-size:.45em;font-style:italic;margin-top:8px}
+.side p.lede{font-size:clamp(17px,1.5vw,20px);max-width:36ch;margin-top:16px}
+.occ{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.occ span{padding:8px 14px;border-radius:999px;font-weight:500;font-size:14px}
+.occ span:nth-child(1){background:var(--pink)}.occ span:nth-child(2){background:var(--mint)}.occ span:nth-child(3){background:var(--lilac)}.occ span:nth-child(4){background:var(--butter)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:54px;padding:0 24px;border-radius:999px;border:2px solid var(--berry);font-weight:700;text-decoration:none;background:var(--white)}
+.btn.wa{background:var(--wa);border-color:var(--wa);color:#fff}
+.btn:hover{background:var(--berry);border-color:var(--berry);color:#fff}
+.fine{margin-top:14px;font-size:13px;opacity:.7}
+@media(max-width:820px){
+  .top{grid-template-columns:1fr;padding-top:12px;min-height:0}
+  .story{max-height:78svh;max-width:440px;margin:0 auto}
+  .side{text-align:left}
+}
+
+/* GALERIA (miejsca na zdjęcia) */
+.sec{padding:clamp(64px,10vh,110px) var(--gut)}
+.wrap{max-width:1200px;margin:0 auto}
+.sec h2{font-size:clamp(38px,5vw,66px)}
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:34px}
+@media(max-width:700px){.gal{grid-template-columns:1fr 1fr}.gal figure:last-child{grid-column:span 2}}
+.gal figure{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden}
+.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.gal em{position:absolute;left:12px;bottom:12px;font-style:normal;font-weight:500;font-size:12px;padding:6px 11px;border-radius:999px;background:rgba(58,24,48,.85);color:#fff}
+
+/* JAK ZAMÓWIĆ: oś pionowa */
+.steps{list-style:none;margin-top:30px;border-left:3px solid var(--pink);padding-left:26px;display:grid;gap:22px;max-width:640px}
+.steps li{position:relative}
+.steps li::before{content:"";position:absolute;left:-36px;top:4px;width:17px;height:17px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 5px var(--white)}
+.steps b{display:block;font-size:19px}
+
+/* KONTAKT */
+.contact{background:var(--berry);color:var(--white)}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(30px,6vw,80px)}
+@media(max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+.contact .lbl{color:var(--pink);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+dl{display:grid;grid-template-columns:auto 1fr;gap:12px 22px;margin-top:24px}
+dt{font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding-top:4px;color:var(--pink)}
+dd{font-size:18px}
+.mapbox{border-radius:22px;overflow:hidden;min-height:380px}
+.mapbox iframe{display:block;width:100%;height:100%;min-height:380px;border:0}
+footer{background:var(--berry);border-top:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);padding:26px var(--gut) 40px}
+footer p{max-width:88ch;font-size:13px}
+@media(prefers-reduced-motion:reduce){.bars i.run::after{animation:none;width:100%}.balls span,.fridge span::after{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="top" id="start">
+  <div class="story" id="story" aria-roledescription="relacje" aria-label="Relacje CakebyEwela">
+    <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="who" aria-hidden="true"><i>E</i><span>cakebyewela <small>· Wrocław</small></span></div>
+
+    <section class="slide s1 on" aria-label="1 z 5">
+      <canvas id="cv" role="img" aria-label="Trójwymiarowy tort z kremem i owocami, model wygenerowany komputerowo."></canvas>
+      <span class="tag">model 3D wygenerowany komputerowo</span>
+      <h2>Torty artystyczne na zamówienie</h2>
+      <p>Torty weselne, urodzinowe i słodkie stoły.</p>
+    </section>
+    <section class="slide s2" aria-label="2 z 5">
+      <div class="big" aria-hidden="true">50</div>
+      <span class="tag">red cake</span>
+      <h2>Tort na 50. urodziny</h2>
+      <p>„Perełka moich urodzin” – napisała solenizantka pod zdjęciem.</p>
+    </section>
+    <section class="slide s3" aria-label="3 z 5">
+      <div class="balls" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="tag">na roczek</span>
+      <h2>Piłka, kosz i traktor</h2>
+      <p>Torty dla dzieci z ulubionym sportem albo zabawką.</p>
+    </section>
+    <section class="slide s4" aria-label="4 z 5">
+      <div class="fridge" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="tag">co tydzień</span>
+      <h2>Chłodnie pełne projektów</h2>
+      <p>Co tydzień chłodnie wypełniają się nowymi tortami. Termin warto zarezerwować wcześniej.</p>
+    </section>
+    <section class="slide s5" aria-label="5 z 5">
+      <span class="tag">zamów</span>
+      <h2>Jaki tort dla Ciebie?</h2>
+      <p>Napisz na WhatsAppie: okazja, data, liczba osób i pomysł.</p>
+      <div class="ctas" style="margin-top:16px;position:relative;z-index:6"><a class="btn wa" href="https://wa.me/48609525422">WhatsApp</a></div>
+    </section>
+
+    <button class="tap l" type="button" aria-label="Poprzednia relacja"></button>
+    <button class="tap r" type="button" aria-label="Następna relacja"></button>
+    <button class="pause" type="button" id="pause" aria-label="Wstrzymaj relacje">II</button>
+  </div>
+
+  <div class="side">
+    <div class="lbl">Bielany Wrocławskie · Wrocław</div>
+    <h1>CakebyEwela<em>torty, które się pamięta</em></h1>
+    <p class="lede">Torty artystyczne na zamówienie, torty weselne i słodkie stoły. Projekt pod Twoją okazję, od roczku po wesele.</p>
+    <div class="occ"><span>urodziny</span><span>roczek</span><span>wesele</span><span>słodki stół</span></div>
+    <div class="ctas"><a class="btn wa" href="https://wa.me/48609525422">Zamów przez WhatsApp</a><a class="btn" href="#zamow">Jak zamówić</a></div>
+    <p class="fine">100% poleceń na Facebooku · 7,1 tys. obserwujących</p>
+  </div>
+</header>
+
+<main>
+<section class="sec" id="galeria">
+  <div class="wrap">
+    <h2>Galeria</h2>
+    <div class="gal">
+      <figure><img src="g1.jpg" alt="Tort z różami (ilustracja)" loading="lazy" width="480" height="480"><em>Tu będzie zdjęcie Pani tortu</em></figure>
+      <figure><img src="g2.jpg" alt="Deser z malinami (ilustracja)" loading="lazy" width="480" height="480"><em>Tu będzie zdjęcie Pani tortu</em></figure>
+      <figure><img src="g3.jpg" alt="Tort z owocami (ilustracja)" loading="lazy" width="480" height="480"><em>Tu będzie zdjęcie Pani tortu</em></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="zamow" style="padding-top:0">
+  <div class="wrap">
+    <h2>Jak zamówić</h2>
+    <ol class="steps">
+      <li><b>Napisz na WhatsAppie albo mailem</b>Okazja, data, liczba osób i pomysł lub inspiracja.</li>
+      <li><b>Ustalmy projekt</b>Smaki, kolory i dekoracje dopasowane do okazji.</li>
+      <li><b>Odbierz tort</b>Bielany Wrocławskie, ul. Wrocławska 53.</li>
+    </ol>
+    <div class="ctas"><a class="btn wa" href="https://wa.me/48609525422">WhatsApp 609 525 422</a><a class="btn" href="mailto:cakebyewela@gmail.com?subject=Zapytanie%20o%20tort&amp;body=Okazja%3A%0AData%3A%0ALiczba%20os%C3%B3b%3A%0APomys%C5%82%3A">E-mail</a></div>
+  </div>
+</section>
+
+<section class="sec contact" id="kontakt">
+  <div class="wrap">
+    <div>
+      <div class="lbl">Kontakt</div>
+      <h2>Wrocławska 53</h2>
+      <dl>
+        <dt>Adres</dt><dd>ul. Wrocławska 53<br>55-040 Bielany Wrocławskie</dd>
+        <dt>WhatsApp</dt><dd><a href="https://wa.me/48609525422">609 525 422</a></dd>
+        <dt>E-mail</dt><dd><a href="mailto:cakebyewela@gmail.com">cakebyewela@gmail.com</a></dd>
+        <dt>Facebook</dt><dd><a href="https://www.facebook.com/cakebyewela" rel="noopener">CakebyEwela</a></dd>
+      </dl>
+    </div>
+    <div class="mapbox"><iframe title="Mapa: CakebyEwela, Wrocławska 53, Bielany Wrocławskie" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=16.9600%2C51.0290%2C16.9765%2C51.0360&amp;layer=mapnik&amp;marker=51.0323906%2C16.9682739"></iframe></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>To makieta nowej strony. Nie ma na niej zdjęć tortów CakebyEwela: tort w pierwszej relacji i zdjęcia w galerii to wizualizacje 3D wygenerowane komputerowo, w ich miejscu pojawią się prawdziwe zdjęcia, za zgodą właścicielki. Opisy realizacji, adres i kontakt pochodzą z facebookowej strony CakebyEwela.</p>
+</footer>
+
+<script>
+(function(){
+var sl=document.querySelectorAll('.slide'),bars=document.querySelectorAll('.bars i'),i=0,tm=null,DUR=5000,paused=false;
+var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function show(n){i=(n+sl.length)%sl.length;sl.forEach(function(s,k){s.classList.toggle('on',k===i)});
+ bars.forEach(function(b,k){b.classList.remove('run');b.classList.toggle('done',k<i)});
+ void bars[i].offsetWidth;bars[i].style.setProperty('--dur',DUR+'ms');
+ if(!paused&&!still){bars[i].classList.add('run');clearTimeout(tm);tm=setTimeout(function(){show(i+1)},DUR)}
+ window.__slide=i}
+document.querySelector('.tap.r').onclick=function(){show(i+1)};
+document.querySelector('.tap.l').onclick=function(){show(i-1)};
+var pb=document.getElementById('pause');pb.onclick=function(){paused=!paused;pb.textContent=paused?'▶':'II';pb.setAttribute('aria-label',paused?'Wznów relacje':'Wstrzymaj relacje');if(paused){clearTimeout(tm);bars[i].classList.remove('run')}else show(i)};
+show(0);
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer></script>
+<script defer>
+addEventListener('DOMContentLoaded',function(){
+var cv=document.getElementById('cv');if(!window.THREE||!THREE.GLTFLoader){cv.remove();return}
+try{var R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){cv.remove();return}
+R.setPixelRatio(Math.min(devicePixelRatio||1,2));R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.05;
+var S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,.1,50);cam.position.set(0,1.8,6.4);cam.lookAt(0,0,0);
+S.add(new THREE.HemisphereLight(0xffffff,0x7a4a5a,.9));
+var k=new THREE.DirectionalLight(0xffffff,1.6);k.position.set(-3,5,4);S.add(k);
+var r=new THREE.DirectionalLight(0xffd0dc,1);r.position.set(4,2,-3);S.add(r);
+var piv=new THREE.Group();S.add(piv);
+new THREE.GLTFLoader().load('cake.glb',function(g){var o=g.scene,b=new THREE.Box3().setFromObject(o),s=b.getSize(new THREE.Vector3()),c=b.getCenter(new THREE.Vector3()),sc=2.3/Math.max(s.x,s.y,s.z);o.scale.setScalar(sc);o.position.set(-c.x*sc,-c.y*sc,-c.z*sc);piv.add(o)});
+function fit(){var w=cv.clientWidth,h=cv.clientHeight;if(!w)return;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+fit();addEventListener('resize',fit);
+var still=matchMedia('(prefers-reduced-motion: reduce)').matches,t0=performance.now();
+(function loop(now){requestAnimationFrame(loop);if(window.__slide!==0)return;var t=(now-t0)/1000;
+ piv.rotation.y=still?.6:t*.5;R.render(S,cam)})(t0);
+});
+</script>
+<script data-goatcounter="https://penia-demo.goatcounter.com/count" data-goatcounter-settings='{"path":"cakebyewela"}' async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
